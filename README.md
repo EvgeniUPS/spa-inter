@@ -1,4 +1,4 @@
-# interqd-stock
+# SPA - inter 
 
 > A Vue.js project
 
