@@ -1,9 +1,11 @@
 <template>
   
   <v-container fluid grid-list-md>
+    <input type="text" class="form-control" placeholder="Поиск" aria-label="Username" aria-describedby="basic-addon1"  v-model="searchName" autofocus>
     <v-layout row wrap>
 
-<!--       
+
+<!--        
       <v-flex d-flex xs12 sm4 v-for="(name, index) in filteredNames" :key="index">
         <v-card  >
           <v-card-title primary class="title">{{name.model}}</v-card-title>
@@ -36,7 +38,7 @@
       </v-flex> -->
 
 
-    <v-flex d-flex xs12 sm6 v-for="name in names" :key="name.id">
+    <v-flex d-flex xs12 sm6 v-for="name in filteredNames" :key="name.id">
        <v-card >
         <v-card-media
           :src="name.image"

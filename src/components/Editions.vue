@@ -1,0 +1,389 @@
+<template>
+  
+  <v-container fluid grid-list-md>
+    <input type="text" class="form-control" placeholder="Поиск" aria-label="Username" aria-describedby="basic-addon1"  v-model="searchName" autofocus>
+    <v-layout row wrap>
+
+
+<!--        
+      <v-flex d-flex xs12 sm4 v-for="(name, index) in filteredNames" :key="index">
+        <v-card  >
+          <v-card-title primary class="title">{{name.model}}</v-card-title>
+          <v-card-text>{{ lorem.slice(0,50) }}</v-card-text>
+        </v-card>
+      </v-flex> -->
+
+      
+
+      <!-- <v-flex d-flex xs12 sm4 v-for="name in 2" :key="name.id">
+     
+        <v-card  >
+           
+          <v-card-title primary class="title"> {{name.factory}} {{name.model}} ({{name.cover}}) {{name.art}}</v-card-title>
+          <v-card-media
+          class="white--text"
+          height="400px"
+          :src="name.image"
+        >
+            <v-container fill-height fluid>
+            <v-layout fill-height>
+              <v-flex xs12 align-end flexbox>
+                <span class="headline">Top 10 Australian beaches</span>
+              </v-flex>
+            </v-layout>
+            </v-container>
+          </v-card-media>
+          <v-card-text>{{ lorem.slice(0,50) }}</v-card-text>
+        </v-card>
+      </v-flex> -->
+
+
+    <v-flex d-flex xs12 sm6 v-for="name in filteredNames" :key="name.id">
+       <v-card >
+        <v-card-media
+          :src="name.image"
+          height="500px"
+          
+        >
+        </v-card-media>
+        <v-card-title primary-title>
+          <div>
+            <div class="headline"> {{name.model}} ({{name.cover}}) </div>
+            <span class="grey--text">1,000 miles of wonder</span>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat>Share</v-btn>
+          <v-btn flat color="purple">Explore</v-btn>
+          <v-spacer></v-spacer>
+          <v-btn icon @click.native="show = !show">
+            <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+          </v-btn>
+        </v-card-actions>
+        <v-slide-y-transition>
+          <v-card-text v-show="show">
+            {{name.description}}
+          </v-card-text>
+        </v-slide-y-transition>
+      </v-card>
+    </v-flex>
+
+      
+          
+      
+    </v-layout>
+
+
+    
+  </v-container>
+  
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      show: false,
+      lorem: `Lorem ipsum dolor sit amet, mel at clita quando. Te sit oratio vituperatoribus, nam ad ipsum posidonium mediocritatem, explicari dissentiunt cu mea. Repudiare disputationi vim in, mollis iriure nec cu, alienum argumentum ius ad. Pri eu justo aeque torquatos.`,
+      temp: 1000000,
+
+      names: [
+        /////////////////
+        
+          {id: '130882', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A399', cover: '10BK', description: 'NATUZZI EDITIONS A399 Vella 10BK', art: '003 ноги 18', stock: '1', firstPrice : 42268, finalPrice: 31701, image : '/static/img/sofas/130882.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+          {id: '133793', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A399', cover: '10BS', description: 'NATUZZI EDITIONS A399 Vella 10BS', art: '003 ноги 18', stock: '1', firstPrice : 42268, finalPrice: 31701, image : '/static/img/sofas/133793.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '159054', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A399', cover: '10BS', description: 'NATUZZI EDITIONS A399 Vella 10BS', art: 'А399  вер. 008 матрас SPRING MATT. H12 L182 LAR 142 T. G.B', stock: '1', firstPrice : 8021, finalPrice: 6015.75, image : '/static/img/sofas/159054.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163070', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A399', cover: '15WE-CS', description: 'NATUZZI EDITIONS A399 Vella 15WE-CS', art: '008', stock: '1', firstPrice : 95841, finalPrice: 71880.75, image : '/static/img/sofas/163070.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163071', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A399', cover: '15WE-CS', description: 'NATUZZI EDITIONS A399 Vella 15WE-CS', art: '003', stock: '2', firstPrice : 45324, finalPrice: 33993, image : '/static/img/sofas/163071.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '102717', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'A450', cover: '', description: 'NATUZZI EDITIONS A450 10KM', art: '027 ноги 09', stock: '1', firstPrice : 88508, finalPrice: 66381, image : '/static/img/sofas/102717.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '142180', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'A128LB3 OSTUNI COFFEE OAK 75 X120 H33', stock: '1', firstPrice : 28111, finalPrice: 21083.25, image : '/static/img/sofas/142180.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '147641', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'A128LN3 OSTUNI WALNUT 75X120 H33', stock: '4', firstPrice : 28111, finalPrice: 21083.25, image : '/static/img/sofas/147641.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '161889', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T125LN4  ALBEROBELLO  Coffee table canaletto waltut    80x120xH35', stock: '2', firstPrice : 32389, finalPrice: 24291.75, image : '/static/img/sofas/161889.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163267', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'A130LN0 Noci smoked oak', stock: '1', firstPrice : 5704, finalPrice: 4278, image : '/static/img/sofas/163267.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163269', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'A131LB0 Conversano smoked oak', stock: '1', firstPrice : 8556, finalPrice: 6417, image : '/static/img/sofas/163269.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163271', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T144LLB Chianti canaletto walnut/coffee', stock: '1', firstPrice : 35139, finalPrice: 26354.25, image : '/static/img/sofas/163271.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163272', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T145LY3 Merlot white oak', stock: '1', firstPrice : 26481, finalPrice: 19860.75, image : '/static/img/sofas/163272.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163273', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T152M55 Novello 100 h37', stock: '1', firstPrice : 25056, finalPrice: 18792, image : '/static/img/sofas/163273.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163274', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T152M52 Novello 60 h37', stock: '1', firstPrice : 11815, finalPrice: 8861.25, image : '/static/img/sofas/163274.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163275', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T152M5R Novello 50 h37', stock: '1', firstPrice : 10287, finalPrice: 7715.25, image : '/static/img/sofas/163275.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163276', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'T153LR3 Amarone brown oak/smoke', stock: '1', firstPrice : 22306, finalPrice: 16729.5, image : '/static/img/sofas/163276.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163284', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R855TGX Mad man 200*280 grey', stock: '1', firstPrice : 29537, finalPrice: 22152.75, image : '/static/img/sofas/163284.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163285', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R855THX Mad man 200*280 gold', stock: '1', firstPrice : 29537, finalPrice: 22152.75, image : '/static/img/sofas/163285.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163286', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R856TGX Mad man 200*280 grey', stock: '1', firstPrice : 29537, finalPrice: 22152.75, image : '/static/img/sofas/163286.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163287', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R857TIX Old kilim 200*280 rust', stock: '1', firstPrice : 29537, finalPrice: 22152.75, image : '/static/img/sofas/163287.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163288', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R863VQX Sahara 200*300 taupe', stock: '2', firstPrice : 26176, finalPrice: 19632, image : '/static/img/sofas/163288.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163289', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R863VEX Sahara 200*300 rope', stock: '1', firstPrice : 26176, finalPrice: 19632, image : '/static/img/sofas/163289.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163290', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'accents', cover: '', description: 'NATUZZI EDITIONS accents', art: 'Carpet R863VNX Sahara 200*300 beige', stock: '2', firstPrice : 26176, finalPrice: 19632, image : '/static/img/sofas/163290.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '130885', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '10BL', description: 'NATUZZI EDITIONS B627 Timone 10BL', art: '003 ноги 18', stock: '1', firstPrice : 37176, finalPrice: 27882, image : '/static/img/sofas/130885.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '130887', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '10BL', description: 'NATUZZI EDITIONS B627 Timone 10BL', art: '008 ноги 18', stock: '3', firstPrice : 86166, finalPrice: 64624.5, image : '/static/img/sofas/130887.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '158546', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '10BT-CS', description: 'NATUZZI EDITIONS B627 Timone 10BT-CS', art: '003 ноги 18', stock: '2', firstPrice : 37176, finalPrice: 27882, image : '/static/img/sofas/158546.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '158548', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '10BT-CS', description: 'NATUZZI EDITIONS B627 Timone 10BT-CS', art: '008 ноги 18', stock: '4', firstPrice : 86166, finalPrice: 64624.5, image : '/static/img/sofas/158548.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163073', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '15WF', description: 'NATUZZI EDITIONS B627 Timone 15WF', art: '008', stock: '5', firstPrice : 90953, finalPrice: 68214.75, image : '/static/img/sofas/163073.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163075', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B627', cover: '15WF', description: 'NATUZZI EDITIONS B627 Timone 15WF', art: '003', stock: '2', firstPrice : 40028, finalPrice: 30021, image : '/static/img/sofas/163075.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '95388', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B645', cover: '15GG', description: 'NATUZZI EDITIONS B645 15GG', art: '113', stock: '2', firstPrice : 6234, finalPrice: 4675.5, image : '/static/img/sofas/95388.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '113239', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B684', cover: '15GE-CS', description: 'NATUZZI EDITIONS B684 15GE-CS', art: '076', stock: '1', firstPrice : 52402, finalPrice: 39301.5, image : '/static/img/sofas/113239.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '102707', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B684', cover: '15GN', description: 'NATUZZI EDITIONS B684 15GN', art: '076 ноги 18', stock: '1', firstPrice : 52402, finalPrice: 39301.5, image : '/static/img/sofas/102707.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '134397', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B757', cover: '20JJ', description: 'NATUZZI EDITIONS B757  20JJ', art: '003 ноги 18', stock: '1', firstPrice : 43185, finalPrice: 32388.75, image : '/static/img/sofas/134397.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163184', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B795', cover: '15CK-CS', description: 'NATUZZI EDITIONS B795 15CK-CS', art: '446', stock: '1', firstPrice : 133322, finalPrice: 99991.5, image : '/static/img/sofas/163184.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163185', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B795', cover: '15CK-CS', description: 'NATUZZI EDITIONS B795 15CK-CS', art: '193', stock: '1', firstPrice : 122017, finalPrice: 91512.75, image : '/static/img/sofas/163185.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163187', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B795', cover: '15CW', description: 'NATUZZI EDITIONS B795 15CW', art: '003', stock: '1', firstPrice : 52351, finalPrice: 39263.25, image : '/static/img/sofas/163187.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '134400', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B816', cover: '10BT/10KS', description: 'NATUZZI EDITIONS B816 10BT/10KS', art: '003 ноги 18', stock: '10', firstPrice : 57149, finalPrice: 42861.75, image : '/static/img/sofas/134400.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136358', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B835', cover: '10BF', description: 'NATUZZI EDITIONS B835  10BF', art: '000', stock: '2', firstPrice : 34691, finalPrice: 26018.25, image : '/static/img/sofas/136358.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136580', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B835', cover: '10BH', description: 'NATUZZI EDITIONS B835  10BH', art: '003', stock: '2', firstPrice : 46495, finalPrice: 34871.25, image : '/static/img/sofas/136580.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '159872', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B835', cover: '10BH', description: 'NATUZZI EDITIONS B835 Nuvola 10BH', art: '000', stock: '2', firstPrice : 31981, finalPrice: 23985.75, image : '/static/img/sofas/159872.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '159877', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B835', cover: '10BH', description: 'NATUZZI EDITIONS B835 Nuvola 10BH', art: '025', stock: '2', firstPrice : 85860, finalPrice: 64395, image : '/static/img/sofas/159877.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '159878', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B835', cover: '10BH', description: 'NATUZZI EDITIONS B835 Nuvola 10BH', art: '029', stock: '2', firstPrice : 36768, finalPrice: 27576, image : '/static/img/sofas/159878.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '134403', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B842', cover: '15CU/15CK', description: 'NATUZZI EDITIONS B842 15CU/15CK', art: '003 ноги 18', stock: '9', firstPrice : 49194, finalPrice: 36895.5, image : '/static/img/sofas/134403.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '134404', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B842', cover: '15CU/15CK', description: 'NATUZZI EDITIONS B842 15CU/15CK', art: '264 ноги 18', stock: '1', firstPrice : 118452, finalPrice: 88839, image : '/static/img/sofas/134404.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '159881', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B842', cover: '10BG/10BK', description: 'NATUZZI EDITIONS B842 Olante 10BG/10BK', art: '262 ноги 18', stock: '2', firstPrice : 87897, finalPrice: 65922.75, image : '/static/img/sofas/159881.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163077', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '10BF WELT 10ZE', description: 'NATUZZI EDITIONS B865 10BF WELT 10ZE', art: '264', stock: '1', firstPrice : 85860, finalPrice: 64395, image : '/static/img/sofas/163077.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '157911', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '10BT WELT10BH', description: 'NATUZZI EDITIONS B865 10BT  WELT10BH', art: '003', stock: '1', firstPrice : 37889, finalPrice: 28416.75, image : '/static/img/sofas/157911.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163949', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '10ZC WELT 10BH', description: 'NATUZZI EDITIONS B865 10ZC WELT 10BH', art: '154', stock: '1', firstPrice : 51842, finalPrice: 38881.5, image : '/static/img/sofas/163949.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163950', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '10ZC WELT 10BH', description: 'NATUZZI EDITIONS B865 10ZC WELT 10BH', art: '264', stock: '1', firstPrice : 85860, finalPrice: 64395, image : '/static/img/sofas/163950.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163080', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '15WI WELT 15CU', description: 'NATUZZI EDITIONS B865 15WI WELT 15CU', art: '264', stock: '4', firstPrice : 90749, finalPrice: 68061.75, image : '/static/img/sofas/163080.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163089', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '15WI WELT 15CU', description: 'NATUZZI EDITIONS B865 15WI WELT 15CU', art: '004', stock: '4', firstPrice : 48888, finalPrice: 36666, image : '/static/img/sofas/163089.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164736', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '20JL-CS WELT 20JJ', description: 'NATUZZI EDITIONS B865 20JL-CS WELT 20JJ', art: '003 feet 18', stock: '1', firstPrice : 44203, finalPrice: 33152.25, image : '/static/img/sofas/164736.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164737', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '20JL-CS WELT 20JJ', description: 'NATUZZI EDITIONS B865 20JL-CS WELT 20JJ', art: '004 feet 18', stock: '1', firstPrice : 52453, finalPrice: 39339.75, image : '/static/img/sofas/164737.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164738', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '20JL-CS WELT 20JJ', description: 'NATUZZI EDITIONS B865 20JL-CS WELT 20JJ', art: '264 feet 18', stock: '1', firstPrice : 96045, finalPrice: 72033.75, image : '/static/img/sofas/164738.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163862', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B865', cover: '20RH', description: 'NATUZZI EDITIONS B865 20RH', art: '004', stock: '1', firstPrice : 52453, finalPrice: 39339.75, image : '/static/img/sofas/163862.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163857', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B888', cover: '15H2', description: 'NATUZZI EDITIONS B888 15H2', art: '200', stock: '1', firstPrice : 66610, finalPrice: 49957.5, image : '/static/img/sofas/163857.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163860', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B888', cover: '15H2', description: 'NATUZZI EDITIONS B888 15H2', art: '019', stock: '1', firstPrice : 59379, finalPrice: 44534.25, image : '/static/img/sofas/163860.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162771', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15GG', description: 'NATUZZI EDITIONS B895 15GG', art: '001', stock: '2', firstPrice : 29639, finalPrice: 22229.25, image : '/static/img/sofas/162771.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162772', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15GG', description: 'NATUZZI EDITIONS B895 15GG', art: '016', stock: '2', firstPrice : 66407, finalPrice: 49805.25, image : '/static/img/sofas/162772.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162773', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15GG', description: 'NATUZZI EDITIONS B895 15GG', art: '017', stock: '2', firstPrice : 66407, finalPrice: 49805.25, image : '/static/img/sofas/162773.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162774', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15GG', description: 'NATUZZI EDITIONS B895 15GG', art: '100', stock: '1', firstPrice : 20167, finalPrice: 15125.25, image : '/static/img/sofas/162774.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163533', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15WN', description: 'NATUZZI EDITIONS B895 15WN', art: '272', stock: '1', firstPrice : 52453, finalPrice: 39339.75, image : '/static/img/sofas/163533.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163534', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15WN', description: 'NATUZZI EDITIONS B895 15WN', art: '274', stock: '1', firstPrice : 52453, finalPrice: 39339.75, image : '/static/img/sofas/163534.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163535', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15WN', description: 'NATUZZI EDITIONS B895 15WN', art: '100', stock: '2', firstPrice : 20167, finalPrice: 15125.25, image : '/static/img/sofas/163535.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162766', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15WQ', description: 'NATUZZI EDITIONS B895 15WQ', art: '001', stock: '1', firstPrice : 29639, finalPrice: 22229.25, image : '/static/img/sofas/162766.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162769', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B895', cover: '15WQ', description: 'NATUZZI EDITIONS B895 15WQ', art: '100', stock: '1', firstPrice : 20167, finalPrice: 15125.25, image : '/static/img/sofas/162769.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163218', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B908', cover: '15ZH', description: 'NATUZZI EDITIONS B908 15ZH', art: '009', stock: '1', firstPrice : 64268, finalPrice: 48201, image : '/static/img/sofas/163218.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163219', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B908', cover: '15ZH', description: 'NATUZZI EDITIONS B908 15ZH', art: '003', stock: '1', firstPrice : 40129, finalPrice: 30096.75, image : '/static/img/sofas/163219.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163216', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B944', cover: '15CI', description: 'NATUZZI EDITIONS B944 15CI', art: 'E44', stock: '1', firstPrice : 90749, finalPrice: 68061.75, image : '/static/img/sofas/163216.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163842', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B985', cover: '15CY', description: 'NATUZZI EDITIONS B985 15CY', art: '005', stock: '1', firstPrice : 45731, finalPrice: 34298.25, image : '/static/img/sofas/163842.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163845', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B985', cover: '15WP', description: 'NATUZZI EDITIONS B985 15WP', art: '064', stock: '1', firstPrice : 60805, finalPrice: 45603.75, image : '/static/img/sofas/163845.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163201', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B986', cover: '20RI', description: 'NATUZZI EDITIONS B986 20RI', art: '450', stock: '1', firstPrice : 67323, finalPrice: 50492.25, image : '/static/img/sofas/163201.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163202', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B986', cover: '20RI', description: 'NATUZZI EDITIONS B986 20RI', art: '452', stock: '1', firstPrice : 67323, finalPrice: 50492.25, image : '/static/img/sofas/163202.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163203', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B986', cover: '20RI', description: 'NATUZZI EDITIONS B986 20RI', art: '291', stock: '1', firstPrice : 33509, finalPrice: 25131.75, image : '/static/img/sofas/163203.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164719', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '10BF welt 10BF', description: 'NATUZZI EDITIONS B995 10BF welt 10BF', art: '535', stock: '1', firstPrice : 100832, finalPrice: 75624, image : '/static/img/sofas/164719.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164720', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '10BF welt 10BF', description: 'NATUZZI EDITIONS B995 10BF welt 10BF', art: '450', stock: '1', firstPrice : 51944, finalPrice: 38958, image : '/static/img/sofas/164720.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163195', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '15CI', description: 'NATUZZI EDITIONS B995 15CI', art: '400', stock: '1', firstPrice : 50213, finalPrice: 37659.75, image : '/static/img/sofas/163195.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163196', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '15CI', description: 'NATUZZI EDITIONS B995 15CI', art: '323', stock: '1', firstPrice : 20880, finalPrice: 15660, image : '/static/img/sofas/163196.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163197', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '15CI', description: 'NATUZZI EDITIONS B995 15CI', art: '338', stock: '1', firstPrice : 44305, finalPrice: 33228.75, image : '/static/img/sofas/163197.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163198', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '15CI', description: 'NATUZZI EDITIONS B995 15CI', art: '011', stock: '1', firstPrice : 47972, finalPrice: 35979, image : '/static/img/sofas/163198.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163199', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'B995', cover: '15CI', description: 'NATUZZI EDITIONS B995 15CI', art: '537', stock: '1', firstPrice : 120082, finalPrice: 90061.5, image : '/static/img/sofas/163199.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163233', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C005', cover: '15WN', description: 'NATUZZI EDITIONS C005 15WN', art: '064', stock: '1', firstPrice : 72416, finalPrice: 54312, image : '/static/img/sofas/163233.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163231', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C005', cover: '15WP', description: 'NATUZZI EDITIONS C005 15WP', art: '003', stock: '2', firstPrice : 41555, finalPrice: 31166.25, image : '/static/img/sofas/163231.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163189', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C008', cover: '1575', description: 'NATUZZI EDITIONS C008 1575', art: '537', stock: '1', firstPrice : 100425, finalPrice: 75318.75, image : '/static/img/sofas/163189.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163190', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C008', cover: '1575', description: 'NATUZZI EDITIONS C008 1575', art: '011', stock: '1', firstPrice : 33407, finalPrice: 25055.25, image : '/static/img/sofas/163190.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163191', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C008', cover: '1575', description: 'NATUZZI EDITIONS C008 1575', art: '016', stock: '1', firstPrice : 40129, finalPrice: 30096.75, image : '/static/img/sofas/163191.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163206', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C013', cover: '20JX', description: 'NATUZZI EDITIONS C013 20JX', art: '450 feet78', stock: '1', firstPrice : 78527, finalPrice: 58895.25, image : '/static/img/sofas/163206.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163208', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C013', cover: '20JX', description: 'NATUZZI EDITIONS C013 20JX', art: '049 feet78', stock: '1', firstPrice : 63351, finalPrice: 47513.25, image : '/static/img/sofas/163208.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164655', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C013', cover: '20JX', description: 'NATUZZI EDITIONS C013 20JX', art: '291 feet78', stock: '1', firstPrice : 31778, finalPrice: 23833.5, image : '/static/img/sofas/164655.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163243', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C015', cover: '1575', description: 'NATUZZI EDITIONS C015 1575', art: '011', stock: '1', firstPrice : 36157, finalPrice: 27117.75, image : '/static/img/sofas/163243.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163244', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C015', cover: '1575', description: 'NATUZZI EDITIONS C015 1575', art: '621', stock: '1', firstPrice : 33407, finalPrice: 25055.25, image : '/static/img/sofas/163244.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163245', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C015', cover: '1575', description: 'NATUZZI EDITIONS C015 1575', art: '113', stock: '1', firstPrice : 9676, finalPrice: 7257, image : '/static/img/sofas/163245.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163213', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C018', cover: '15CY', description: 'NATUZZI EDITIONS C018 15CY', art: '216', stock: '1', firstPrice : 79342, finalPrice: 59506.5, image : '/static/img/sofas/163213.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163214', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C018', cover: '15CY', description: 'NATUZZI EDITIONS C018 15CY', art: '049', stock: '1', firstPrice : 72416, finalPrice: 54312, image : '/static/img/sofas/163214.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163223', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C021', cover: '20JN', description: 'NATUZZI EDITIONS C021 20JN', art: '450', stock: '1', firstPrice : 75879, finalPrice: 56909.25, image : '/static/img/sofas/163223.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163224', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C021', cover: '20JN', description: 'NATUZZI EDITIONS C021 20JN', art: '291', stock: '1', firstPrice : 30352, finalPrice: 22764, image : '/static/img/sofas/163224.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163225', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C021', cover: '20JN', description: 'NATUZZI EDITIONS C021 20JN', art: '011', stock: '1', firstPrice : 46953, finalPrice: 35214.75, image : '/static/img/sofas/163225.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163226', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C021', cover: '20JN', description: 'NATUZZI EDITIONS C021 20JN', art: '001', stock: '1', firstPrice : 26481, finalPrice: 19860.75, image : '/static/img/sofas/163226.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163227', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C021', cover: '20JN', description: 'NATUZZI EDITIONS C021 20JN', art: '402', stock: '1', firstPrice : 71295, finalPrice: 53471.25, image : '/static/img/sofas/163227.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164845', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '10BL', description: 'NATUZZI EDITIONS C027 10BL', art: '047', stock: '1', firstPrice : 42166, finalPrice: 31624.5, image : '/static/img/sofas/164845.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164846', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '10BL', description: 'NATUZZI EDITIONS C027 10BL', art: '338', stock: '1', firstPrice : 54898, finalPrice: 41173.5, image : '/static/img/sofas/164846.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164847', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '10BL', description: 'NATUZZI EDITIONS C027 10BL', art: '452', stock: '1', firstPrice : 63657, finalPrice: 47742.75, image : '/static/img/sofas/164847.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164564', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '83010217', description: 'NATUZZI EDITIONS C027 83010217', art: '291', stock: '1', firstPrice : 19759, finalPrice: 14819.25, image : '/static/img/sofas/164564.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164566', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '83010217', description: 'NATUZZI EDITIONS C027 83010217', art: '452', stock: '1', firstPrice : 54083, finalPrice: 40562.25, image : '/static/img/sofas/164566.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164567', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C027', cover: '83010217', description: 'NATUZZI EDITIONS C027 83010217', art: '047', stock: '1', firstPrice : 31268, finalPrice: 23451, image : '/static/img/sofas/164567.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164560', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C048', cover: '15WM welt 15CW', description: 'NATUZZI EDITIONS C048 15WM welt 15CW', art: '514', stock: '1', firstPrice : 64573, finalPrice: 48429.75, image : '/static/img/sofas/164560.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164561', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C048', cover: '15WM welt 15CW', description: 'NATUZZI EDITIONS C048 15WM welt 15CW', art: '515', stock: '1', firstPrice : 64573, finalPrice: 48429.75, image : '/static/img/sofas/164561.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164582', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C048', cover: '15WM welt 15CW', description: 'NATUZZI EDITIONS C048 15WM welt 15CW', art: '323', stock: '1', firstPrice : 20167, finalPrice: 15125.25, image : '/static/img/sofas/164582.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164562', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C056', cover: '15WM welt 15CW', description: 'NATUZZI EDITIONS C056 15WM welt 15CW', art: '066 ноги 75', stock: '1', firstPrice : 47870, finalPrice: 35902.5, image : '/static/img/sofas/164562.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164578', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '10BK-CS', description: 'NATUZZI EDITIONS C072 10BK-CS', art: '291', stock: '1', firstPrice : 27398, finalPrice: 20548.5, image : '/static/img/sofas/164578.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164580', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '10BK-CS', description: 'NATUZZI EDITIONS C072 10BK-CS', art: '515', stock: '1', firstPrice : 58259, finalPrice: 43694.25, image : '/static/img/sofas/164580.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164609', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '10BK-CS', description: 'NATUZZI EDITIONS C072 10BK-CS', art: '188', stock: '1', firstPrice : 70379, finalPrice: 52784.25, image : '/static/img/sofas/164609.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164572', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '1562-CS', description: 'NATUZZI EDITIONS C072 1562-CS', art: '514', stock: '1', firstPrice : 60805, finalPrice: 45603.75, image : '/static/img/sofas/164572.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164573', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '1562-CS', description: 'NATUZZI EDITIONS C072 1562-CS', art: '291', stock: '2', firstPrice : 29028, finalPrice: 21771, image : '/static/img/sofas/164573.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164575', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '1562-CS', description: 'NATUZZI EDITIONS C072 1562-CS', art: '515', stock: '1', firstPrice : 60805, finalPrice: 45603.75, image : '/static/img/sofas/164575.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164606', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '1562-CS', description: 'NATUZZI EDITIONS C072 1562-CS', art: '188', stock: '1', firstPrice : 73638, finalPrice: 55228.5, image : '/static/img/sofas/164606.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164607', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C072', cover: '1562-CS', description: 'NATUZZI EDITIONS C072 1562-CS', art: '189', stock: '1', firstPrice : 73638, finalPrice: 55228.5, image : '/static/img/sofas/164607.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164589', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C077', cover: '68003702', description: 'NATUZZI EDITIONS C077 68003702', art: '530', stock: '1', firstPrice : 69564, finalPrice: 52173, image : '/static/img/sofas/164589.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164590', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C077', cover: '68003702', description: 'NATUZZI EDITIONS C077 68003702', art: '262', stock: '2', firstPrice : 56935, finalPrice: 42701.25, image : '/static/img/sofas/164590.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164592', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C077', cover: '78017610', description: 'NATUZZI EDITIONS C077 78017610', art: '530', stock: '1', firstPrice : 74860, finalPrice: 56145, image : '/static/img/sofas/164592.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164593', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'C077', cover: '78017610', description: 'NATUZZI EDITIONS C077 78017610', art: '262', stock: '2', firstPrice : 61009, finalPrice: 45756.75, image : '/static/img/sofas/164593.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '142190', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'PILLOW', cover: '', description: 'NATUZZI EDITIONS PILLOW', art: 'A787T70 PILLOW BROWN 50X50', stock: '1', firstPrice : 3209, finalPrice: 2406.75, image : '/static/img/sofas/142190.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '142192', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'PILLOW', cover: '', description: 'NATUZZI EDITIONS PILLOW', art: 'A788T70 PILLOW  BROWN 50X50', stock: '1', firstPrice : 3209, finalPrice: 2406.75, image : '/static/img/sofas/142192.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '142195', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'PILLOW', cover: '', description: 'NATUZZI EDITIONS PILLOW', art: 'A783TD0 PILLOW BORDEAUX 50X50', stock: '1', firstPrice : 3209, finalPrice: 2406.75, image : '/static/img/sofas/142195.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '142197', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'PILLOW', cover: '', description: 'NATUZZI EDITIONS PILLOW', art: 'A782TE0 PILLOW  BEIGE 50X50', stock: '1', firstPrice : 3209, finalPrice: 2406.75, image : '/static/img/sofas/142197.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163252', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.A800', cover: '70.0077.09', description: 'NATUZZI EDITIONS т.A800 70.0077.09', art: '376', stock: '1', firstPrice : 1834, finalPrice: 1375.5, image : '/static/img/sofas/163252.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163254', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.A800', cover: '78.0176.02', description: 'NATUZZI EDITIONS т.A800 78.0176.02', art: '385', stock: '2', firstPrice : 1834, finalPrice: 1375.5, image : '/static/img/sofas/163254.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '88735', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B536', cover: '70004603', description: 'NATUZZI EDITIONS т.B536 70004603', art: '003 ноги 18', stock: '1', firstPrice : 26573, finalPrice: 19929.75, image : '/static/img/sofas/88735.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136766', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B741', cover: '70006301', description: 'NATUZZI EDITIONS т.B741 70006301', art: '003 ноги 18', stock: '3', firstPrice : 17621, finalPrice: 13215.75, image : '/static/img/sofas/136766.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '130894', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B741', cover: '83009001', description: 'NATUZZI EDITIONS т.B741 83009001', art: '034 ноги 18', stock: '1', firstPrice : 26991, finalPrice: 20243.25, image : '/static/img/sofas/130894.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '157903', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B757', cover: '68003005', description: 'NATUZZI EDITIONS т.B757 68003005', art: '003', stock: '5', firstPrice : 32898, finalPrice: 24673.5, image : '/static/img/sofas/157903.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '157899', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B757', cover: '68003009', description: 'NATUZZI EDITIONS т.B757 68003009', art: '003', stock: '3', firstPrice : 32898, finalPrice: 24673.5, image : '/static/img/sofas/157899.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '157901', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B757', cover: '68003009', description: 'NATUZZI EDITIONS т.B757 68003009', art: '264', stock: '1', firstPrice : 87693, finalPrice: 65769.75, image : '/static/img/sofas/157901.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136770', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '70006304', description: 'NATUZZI EDITIONS т.B835 70006304', art: '000', stock: '1', firstPrice : 24149, finalPrice: 18111.75, image : '/static/img/sofas/136770.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136773', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '70006304', description: 'NATUZZI EDITIONS т.B835 70006304', art: '025', stock: '2', firstPrice : 77172, finalPrice: 57879, image : '/static/img/sofas/136773.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136774', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '70006304', description: 'NATUZZI EDITIONS т.B835 70006304', art: '029', stock: '1', firstPrice : 29527, finalPrice: 22145.25, image : '/static/img/sofas/136774.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '136775', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '70006304', description: 'NATUZZI EDITIONS т.B835 70006304', art: '015', stock: '1', firstPrice : 84342, finalPrice: 63256.5, image : '/static/img/sofas/136775.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '160094', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '68003001', description: 'NATUZZI EDITIONS т.B835 Nuvola 68003001', art: '000', stock: '1', firstPrice : 19148, finalPrice: 14361, image : '/static/img/sofas/160094.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '160095', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '68003001', description: 'NATUZZI EDITIONS т.B835 Nuvola 68003001', art: '002', stock: '1', firstPrice : 19148, finalPrice: 14361, image : '/static/img/sofas/160095.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '160099', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '68003001', description: 'NATUZZI EDITIONS т.B835 Nuvola 68003001', art: '025', stock: '1', firstPrice : 62638, finalPrice: 46978.5, image : '/static/img/sofas/160099.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '160100', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '68003001', description: 'NATUZZI EDITIONS т.B835 Nuvola 68003001', art: '029', stock: '3', firstPrice : 22917, finalPrice: 17187.75, image : '/static/img/sofas/160100.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '160108', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B835', cover: '78016108', description: 'NATUZZI EDITIONS т.B835 Nuvola 78016108', art: '029', stock: '1', firstPrice : 25769, finalPrice: 19326.75, image : '/static/img/sofas/160108.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164623', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B883', cover: '83010211', description: 'NATUZZI EDITIONS т.B883 83010211', art: '548', stock: '1', firstPrice : 70684, finalPrice: 53013, image : '/static/img/sofas/164623.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164624', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B883', cover: '83010211', description: 'NATUZZI EDITIONS т.B883 83010211', art: '530', stock: '1', firstPrice : 81175, finalPrice: 60881.25, image : '/static/img/sofas/164624.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164621', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B883', cover: '83010217', description: 'NATUZZI EDITIONS т.B883 83010217', art: '548', stock: '1', firstPrice : 70684, finalPrice: 53013, image : '/static/img/sofas/164621.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163180', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B883', cover: '85.00.50.03', description: 'NATUZZI EDITIONS т.B883 85.00.50.03', art: '529', stock: '1', firstPrice : 77610, finalPrice: 58207.5, image : '/static/img/sofas/163180.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162045', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B895', cover: '78016108', description: 'NATUZZI EDITIONS т.B895 78016108', art: '016', stock: '2', firstPrice : 57138, finalPrice: 42853.5, image : '/static/img/sofas/162045.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162046', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B895', cover: '78016108', description: 'NATUZZI EDITIONS т.B895 78016108', art: '017', stock: '2', firstPrice : 57138, finalPrice: 42853.5, image : '/static/img/sofas/162046.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162316', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B895', cover: '78016108', description: 'NATUZZI EDITIONS т.B895 78016108', art: '010', stock: '1', firstPrice : 14565, finalPrice: 10923.75, image : '/static/img/sofas/162316.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162317', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B895', cover: '78016108', description: 'NATUZZI EDITIONS т.B895 78016108', art: '100', stock: '2', firstPrice : 17213, finalPrice: 12909.75, image : '/static/img/sofas/162317.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '162318', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B895', cover: '78016108', description: 'NATUZZI EDITIONS т.B895 78016108', art: '001', stock: '6', firstPrice : 23528, finalPrice: 17646, image : '/static/img/sofas/162318.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163871', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B985', cover: '78017603', description: 'NATUZZI EDITIONS т.B985 78017603', art: '064', stock: '1', firstPrice : 36768, finalPrice: 27576, image : '/static/img/sofas/163871.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163872', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B985', cover: '78017603', description: 'NATUZZI EDITIONS т.B985 78017603', art: '009', stock: '1', firstPrice : 32083, finalPrice: 24062.25, image : '/static/img/sofas/163872.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164651', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78.0161.02 welt 78.0161.01', description: 'NATUZZI EDITIONS т.B995 78.0161.02 welt 78.0161.01', art: '377', stock: '1', firstPrice : 41453, finalPrice: 31089.75, image : '/static/img/sofas/164651.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164652', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78.0161.02 welt 78.0161.01', description: 'NATUZZI EDITIONS т.B995 78.0161.02 welt 78.0161.01', art: '323', stock: '1', firstPrice : 16093, finalPrice: 12069.75, image : '/static/img/sofas/164652.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164653', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78.0161.02 welt 78.0161.01', description: 'NATUZZI EDITIONS т.B995 78.0161.02 welt 78.0161.01', art: '537', stock: '1', firstPrice : 92073, finalPrice: 69054.75, image : '/static/img/sofas/164653.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163838', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78217610/78217604', description: 'NATUZZI EDITIONS т.B995 78217610/78217604', art: '275', stock: '1', firstPrice : 16296, finalPrice: 12222, image : '/static/img/sofas/163838.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163874', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78217610/78217604', description: 'NATUZZI EDITIONS т.B995 78217610/78217604', art: '452', stock: '1', firstPrice : 40639, finalPrice: 30479.25, image : '/static/img/sofas/163874.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163875', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.B995', cover: '78217610/78217604', description: 'NATUZZI EDITIONS т.B995 78217610/78217604', art: '534', stock: '1', firstPrice : 83008, finalPrice: 62256, image : '/static/img/sofas/163875.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '164598', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C008', cover: '78016101', description: 'NATUZZI EDITIONS т.C008 78016101', art: '550 ноги 78 металл', stock: '1', firstPrice : 83619, finalPrice: 62714.25, image : '/static/img/sofas/164598.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163182', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C014', cover: '78017602', description: 'NATUZZI EDITIONS т.C014 78017602', art: '233', stock: '2', firstPrice : 27704, finalPrice: 20778, image : '/static/img/sofas/163182.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163258', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.01', description: 'NATUZZI EDITIONS т.C015 78.0176.01', art: '274', stock: '1', firstPrice : 21185, finalPrice: 15888.75, image : '/static/img/sofas/163258.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163239', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.02', description: 'NATUZZI EDITIONS т.C015 78.0176.02', art: '253', stock: '1', firstPrice : 16704, finalPrice: 12528, image : '/static/img/sofas/163239.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163240', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.02', description: 'NATUZZI EDITIONS т.C015 78.0176.02', art: '113', stock: '1', firstPrice : 4889, finalPrice: 3666.75, image : '/static/img/sofas/163240.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163241', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.02', description: 'NATUZZI EDITIONS т.C015 78.0176.02', art: '398', stock: '1', firstPrice : 22509, finalPrice: 16881.75, image : '/static/img/sofas/163241.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163236', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.03', description: 'NATUZZI EDITIONS т.C015 78.0176.03', art: '272', stock: '1', firstPrice : 21185, finalPrice: 15888.75, image : '/static/img/sofas/163236.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163237', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C015', cover: '78.0176.03', description: 'NATUZZI EDITIONS т.C015 78.0176.03', art: '291', stock: '1', firstPrice : 16195, finalPrice: 12146.25, image : '/static/img/sofas/163237.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163256', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C016', cover: '78.0176.02', description: 'NATUZZI EDITIONS т.C016 78.0176.02', art: '127', stock: '1', firstPrice : 2954, finalPrice: 2215.5, image : '/static/img/sofas/163256.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+{id: '163221', showItem: '0', factory: 'NATUZZI EDITIONS', model: 'т.C017', cover: '70.0077.11', description: 'NATUZZI EDITIONS т.C017 70.0077.11', art: '064', stock: '1', firstPrice : 66203, finalPrice: 49652.25, image : '/static/img/sofas/163221.jpg', sizeW : '', sizeD : '', sizeH: '', country: 'Италия', tags: ''},
+
+
+
+        /////////////////
+      ],
+      searchName: "",
+      carName: "",
+      carYear: 2018,
+      cars: []
+    };
+  },
+  methods: {
+    createCar() {
+      const car = {
+        name: this.carName,
+        year: this.carYear
+      };
+
+      this.$http
+        .post("http://localhost:3000/cars", car)
+        .then(response => {
+          return response.json();
+        })
+        .then(newCar => {
+          console.log(newCar);
+        });
+    },
+    loadCars() {
+      this.$http
+        .get("http://localhost:3000/cars")
+        .then(response => {
+          return response.json();
+        })
+        .then(cars => {
+          this.cars = cars;
+          console.log(cars);
+        });
+    }
+  },
+
+  filters: {
+    lowercase(value) {
+      return value.toLowerCase();
+    }
+  },
+  computed: {
+    filteredNames() {
+      return this.names.filter(name => {
+        return (
+          name.id.toLowerCase().indexOf(this.searchName.toLowerCase()) !== -1 ||
+          name.factory.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.model.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.cover.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.description
+            .toLowerCase()
+            .indexOf(this.searchName.toLowerCase()) !== -1 ||
+          name.art.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.stock.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.firstPrice
+            .toLowerCase()
+            .indexOf(this.searchName.toLowerCase()) !== -1 ||
+          name.finalPrice
+            .toLowerCase()
+            .indexOf(this.searchName.toLowerCase()) !== -1 ||
+          name.sizeW.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.sizeD.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.sizeH.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.country.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.tags.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.id.toLowerCase().indexOf(this.searchName.toLowerCase()) !== -1 ||
+          name.factory.toLowerCase().indexOf(this.searchName.toLowerCase()) !==
+            -1 ||
+          name.tags.toLowerCase().indexOf(this.searchName.toLowerCase()) !== -1
+        );
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.products {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product-card {
+  padding: 2%;
+  flex-grow: 1;
+  flex-basis: 30%;
+  /* position: relative; */
+  /* padding-bottom: 170px; */
+  font-size: 17px;
+}
+
+.product-image img {
+  max-width: 100%;
+}
+
+.product-info {
+  /* position: absolute; */
+  bottom: 0px;
+}
+
+/* Выбираем первые два товара */
+.products .product-card:last-child,
+.products .product-card:nth-last-child(2) {
+  flex: 2 46%;
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    flex: 1 46%;
+  }
+}
+</style>
+

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Wardoors from '@/components/Wardoors'
 import Sofas from '@/components/Sofas'
+import Editions from '@/components/Editions'
 import Temp from '@/components/Temp'
 
 Vue.use(Router)
@@ -22,6 +23,12 @@ export default new Router({
     ,
     {
       path: '/',
+      name: 'Editions',
+      component: Editions
+    }
+    ,
+    {
+      path: '/sofas',
       name: 'Sofas',
       component: Sofas
     }, {
