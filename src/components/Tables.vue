@@ -6,20 +6,26 @@
     <v-layout row wrap>
     <v-flex v-if="name.showItem == 1" d-flex xs12 sm6 v-for="name in filteredNames" :key="name.id">
        <v-card >
+          <v-card-title primary-title>
+          <div>
+            <div class="headline"> {{name.model}} ({{name.cover}}) </div>
+          </div>
+        </v-card-title>
         <v-card-media
           :src="name.image"
           height="500px"
-          
         >
         </v-card-media>
         <v-card-title primary-title>
           <div>
             <div class="headline"> {{name.model}} ({{name.cover}}) </div>
-            <span class="grey--text">1,000 miles of wonder</span>
+            <span class="grey--text">Цена: {{name.firstPrice | price}} грн. </span>
+              <v-spacer></v-spacer>
+            <span class="red--text headline">После скидки: {{name.finalPrice | price}} грн. </span>
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat>Share</v-btn>
+          <!-- <v-btn flat>Share</v-btn> -->
           <v-btn flat color="purple">Explore</v-btn>
           <v-spacer></v-spacer>
           <v-btn icon @click.native="show = !show">
